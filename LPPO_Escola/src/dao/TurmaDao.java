@@ -18,6 +18,20 @@ import model.Turma;
  */
 public class TurmaDao {
     
+    public void atualizaTurma(Turma turma){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LPPO_EscolaPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.merge(turma);
+            em.getTransaction().commit();
+            em.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+            em.close();
+        }
+    }
     
     public void cadastraTurma(Turma turma) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LPPO_EscolaPU");
@@ -26,9 +40,11 @@ public class TurmaDao {
         try {
             em.persist(turma);
             em.getTransaction().commit();
+            em.close();
         } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
+            em.close();
         }
     }
     
@@ -40,8 +56,10 @@ public class TurmaDao {
         try {
             t = em.find(Turma.class, id);
             em.getTransaction().commit();
+            em.close();
         } catch (Exception e) {
             em.getTransaction().rollback();
+            em.close();
             throw e;
         }
         return t;
@@ -54,7 +72,9 @@ public class TurmaDao {
         List<Turma> lista = new ArrayList<>();
         try {
             lista = em.createQuery("Select a From Turma a", Turma.class).getResultList();
+            em.close();
         } catch (Exception e) {
+            em.close();
             throw e;
         }
         return lista;

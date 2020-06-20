@@ -11,8 +11,8 @@ package model;
  */
 public enum TipoTurma {
     
-    FUNDAMENTAL,
     FUNDAMENTAL1,
+    FUNDAMENTAL2,
     MEDIO
     
 }

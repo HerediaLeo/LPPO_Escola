@@ -93,11 +93,11 @@ public class Turma implements Serializable{
     }
 
     public int getTotalAlunos() {
-        return totalAlunos;
+        return alunos.size();
     }
-
-    public void setTotalAlunos(int totalAlunos) {
-        this.totalAlunos = totalAlunos;
+    
+    public void adicionaAluno(int qnt){
+        this.totalAlunos = qnt;
     }
 
     public List<Aluno> getAlunos() {
@@ -155,11 +155,8 @@ public class Turma implements Serializable{
 
     @Override
     public String toString() {
-        return "Turma{" + "id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", ano=" + ano + ", totalAlunos=" + totalAlunos + '}';
+        return "Turma{" + "id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", ano=" + ano + ", totalAlunos=" + getTotalAlunos() + '}';
     }
-    
-    
-    
     
     
 }

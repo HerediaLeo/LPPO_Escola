@@ -19,6 +19,23 @@ import model.Turma;
  */
 public class AlunoDao {
     
+    public Aluno findById(Long id){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LPPO_EscolaPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Aluno a = new Aluno();
+        try {
+            a = em.find(Aluno.class, id);
+            em.getTransaction().commit();
+            em.close();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            em.close();
+            throw e;
+        }
+        return a;
+    }
+    
     
     public void cadastraAluno(Aluno aluno) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LPPO_EscolaPU");
@@ -83,6 +100,19 @@ public class AlunoDao {
         List<Turma> lista = new ArrayList<>();
         try {
             lista = em.createQuery("select distinct(a.turma) from Aluno a where a.pcd = true", Turma.class).getResultList();
+        } catch (Exception e) {
+            throw e;
+        }
+        return lista;
+    }
+    
+    public List<Aluno> findAll(){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("LPPO_EscolaPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        List<Aluno> lista = new ArrayList<>();
+        try {
+            lista = em.createQuery("select a from Aluno a", Aluno.class).getResultList();
         } catch (Exception e) {
             throw e;
         }

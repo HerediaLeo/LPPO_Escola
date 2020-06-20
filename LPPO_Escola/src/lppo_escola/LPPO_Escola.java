@@ -5,11 +5,8 @@
  */
 package lppo_escola;
 
-import dao.AlunoDao;
-import dao.TurmaDao;
-import model.Aluno;
-import model.TipoTurma;
-import model.Turma;
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import views.PrincipalView;
 
 /**
  *
@@ -22,6 +19,11 @@ public class LPPO_Escola {
      */
     public static void main(String[] args) {
         
+        PrincipalView view = new PrincipalView();
+        view.setVisible(true);
+        view.setTitle("Uniacademia");
+        view.setExtendedState(MAXIMIZED_BOTH);
+        /*
         AlunoDao alunoDao = new AlunoDao();
         TurmaDao turmaDao = new TurmaDao();
         TurmaDao turmaDao1 = new TurmaDao();
@@ -31,6 +33,7 @@ public class LPPO_Escola {
         Turma t = new Turma();
         Turma t1 = new Turma();
         Turma t2 = new Turma();
+        */
         /*
         t.setNome("Primeira série");
         t.setAno(2020);
